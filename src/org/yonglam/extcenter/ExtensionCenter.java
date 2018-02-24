@@ -35,9 +35,13 @@ public class ExtensionCenter {
 
 		public Object invoke(Object proxy, Method method, Object[] args)
 				throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+			List l = mMap.get(this.cls);
+            if (l == null) {
+                System.out.println("None register");
+                return null;
+            }
 			System.out.println("BEFORE");
 			System.out.println(String.format("CALL METHORD: %s", method.toString()));
-			List l = mMap.get(this.cls);
 			for (Object o : l) {
 				Object r = method.invoke(o, args);
 			}
