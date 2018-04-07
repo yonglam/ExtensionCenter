@@ -7,9 +7,18 @@ pipeline {
       }
     }
     stage('UITest') {
-      steps {
-        sh '''echo UITest...
+      parallel {
+        stage('UITest') {
+          steps {
+            sh '''echo UITest...
 '''
+          }
+        }
+        stage('UnitTest') {
+          steps {
+            sh 'echo Unit testing...'
+          }
+        }
       }
     }
     stage('Deploy') {
