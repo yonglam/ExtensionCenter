@@ -1,9 +1,14 @@
+def getTitle() {
+  return 'Hello World'
+}
+
 pipeline {
   agent any
   stages {
     stage('Build') {
       steps {
         sh 'echo Building...'
+        sh 'echo ' + getTitle()
       }
     }
     stage('UITest') {
